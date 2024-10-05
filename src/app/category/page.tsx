@@ -8,9 +8,6 @@ import { IconCategory2 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Footer } from "@/components/Footer";
-import { API_URL } from '@/custom-config';
-
-
 
 const Anime = [
     { id : 1, text : "Characters", value : "anime character" },
@@ -129,12 +126,12 @@ export default function Category() {
             <HeroSection text1="Unleash the Art of Your Screen: Dive into a" text2="World of Stunning Wallpapers" />
             <div className="max-w-6xl m-auto px-2 py-5 md:py-1 md:px-10">
                 <div className="p-2 rounded-lg bg-gradient-to-r from-gray-600 to-gray-800 ">
-                    <div className="flex items-center justify-start gap-4 pb-1">
+                    <div className="flex items-center justify-start gap-4 pb-1 text-slate-100">
                         <IconCategory2 stroke={2.5} className="w-6 h-6 md:w-10 md:h-10" />
                         <p className="text-xl md:text-2xl">Explore Category</p>
                     </div>
-                    <div className="flex gap-2 md:gap-10 mx-1 md:mx-10 my-3">
-                        <select className="select select-bordered w-[150px] md:w-[200px] bg-gray-700" value={selectedCategory} onChange={handleCategoryChange} >
+                    <div className="flex gap-2 md:gap-10 mx-1 md:mx-10 my-3 text-slate-100">
+                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={selectedCategory} onChange={handleCategoryChange} >
                             <option defaultValue={''}>Select Category</option>
                             <option value="anime">Anime & Manga</option>
                             <option value="art">Art & Design</option>
@@ -146,18 +143,18 @@ export default function Category() {
                             <option value="people">People</option>
                             <option value="vehicles">Vehicles</option>
                         </select>
-                        <select className="select select-bordered w-[150px] md:w-[200px] bg-gray-700" value={subCategoryValue} onChange={handleSubCategoryChange}>
+                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={subCategoryValue} onChange={handleSubCategoryChange}>
                             <option defaultValue={''}>Sub Category</option>
                             {subcategories.map((subcategory) => 
                             <option key={subcategory.id} value={subcategory.value}>{subcategory.text}</option>
                             )}
                         </select>
                         
-                        <Button variant="outline" className="h-auto bg-gray-700" onClick={handleCategoriesSubmit}>Submit</Button>
+                        <Button variant="outline" className="h-auto bg-slate-800 dark:bg-gray-700" onClick={handleCategoriesSubmit}>Submit</Button>
                     </div>
                 </div>
             </div>
-            <ImageGalleryCommon queryUrl={`${API_URL}/wallpapers?q=${catValueQuery}&categories=111&purity=110&sorting=views&order=desc&ai_art_filter=0`} />
+            <ImageGalleryCommon queryUrl={`/search?q=${catValueQuery}&categories=111&purity=110&sorting=views&order=desc&ai_art_filter=0`} />
             <Footer />
           </div>
 

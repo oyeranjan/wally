@@ -13,10 +13,6 @@
 /.next/
 /out/
 
-/.firebase/
-/functions
-.firebaserc
-.firebase.json
 # production
 /build
 

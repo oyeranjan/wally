@@ -71,7 +71,7 @@ export function ParallaxScrollGallery() {
       e.preventDefault();
       console.log("submitted");
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?q=${query}&categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
+        const response = await axios.get(`/search?q=${query}&categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
         setWallpapers(response.data.data); // No need to append, just set the data
         setlastPage(response.data.meta.last_page)
         settotalImage(response.data.meta.total)
@@ -88,7 +88,7 @@ export function ParallaxScrollGallery() {
     // Fetch the initial set of images (page 1, without the page parameter)
     const fetchInitialWallpapers = async () => {
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
+        const response = await axios.get(`/search?categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
         setWallpapers(response.data.data); // No need to append, just set the data
         setlastPage(response.data.meta.last_page)
         // console.log(response.data.data)
@@ -103,7 +103,7 @@ export function ParallaxScrollGallery() {
     const fetchWallpapers = async (pageNumber: number) => {
       setLoadingMore(true);
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?q=${query}&categories=100&purity=110&sorting=date_added&order=desc&ai_art_filter=0&page=${pageNumber}`);
+        const response = await axios.get(`/search?q=${query}&categories=100&purity=110&sorting=date_added&order=desc&ai_art_filter=0&page=${pageNumber}`);
         setWallpapers((prevWallpapers) => [...prevWallpapers, ...response.data.data]); // Append new wallpapers
       } catch (error) {
         console.error('Error fetching wallpapers:', error);
@@ -217,7 +217,7 @@ export function ParallaxScrollGallery() {
     {/* ---------------------------------Image modal code starts--------------------------------- */}
     {wallpapers.length > 0 ?
     <dialog id="my_modal_2" className="modal">
-      <div className="modal-box w-11/12 max-w-6xl max-h-fit">
+      <div className="modal-box w-11/12 max-w-6xl max-h-fit bg-slate-50 dark:bg-gray-900">
         <form method="dialog">
           <button onClick={() => closeModal} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>

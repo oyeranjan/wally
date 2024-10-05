@@ -1,8 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Highlight } from "./ui/hero-highlight";
-import { SearchBox } from "./SearchBox";
-import { ParallaxScrollGallery } from "./ParallaxScrollGallery";
 
 interface PropsHeaderText {
   text1: string;

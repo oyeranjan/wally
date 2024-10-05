@@ -29,7 +29,7 @@ export default function Latest() {
                     <p className="text-sm md:text-lg transition ease-in-out delay-250">Get Inspired with the Latest Collection of Greatest Wallpapers!</p>
                 </div>
             </div>
-            <ImageGalleryCommon queryUrl={`${API_URL}/wallpapers?categories=111&purity=100&sorting=date_added&order=desc&ai_art_filter=0`} />
+            <ImageGalleryCommon queryUrl={`/search?categories=111&purity=100&sorting=date_added&order=desc&ai_art_filter=0`} />
             <Footer />
           </div>
 

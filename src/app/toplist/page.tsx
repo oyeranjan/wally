@@ -21,7 +21,7 @@ export default function Toplist() {
           <div className="w-full">
             <HeroSection text1="Unleash the Art of Your Screen: Dive into a" text2="World of Stunning Wallpapers" />
             <div className="max-w-6xl m-auto px-2 py-5 md:py-1 md:px-10">
-                <div className="p-2 rounded-lg bg-gradient-to-r from-purple-700 to-transparent">
+                <div className="p-2 rounded-lg bg-gradient-to-r from-purple-700 to-transparent text-white">
                     <div className="flex items-center justify-start gap-4 pb-1">
                         <IconDiamond stroke={2.5} className="w-6 h-6 md:w-10 md:h-10" />
                         <p className="text-xl md:text-2xl">Toplist</p>

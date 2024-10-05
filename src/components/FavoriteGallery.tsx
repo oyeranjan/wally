@@ -101,7 +101,7 @@ export function FavoriteGallery(){
         {/* ---------------------------------Image modal code starts--------------------------------- */}
         {favorites.length > 0 ?
         <dialog id="my_modal_2" className="modal">
-          <div className="modal-box w-11/12 max-w-6xl max-h-fit">
+          <div className="modal-box w-11/12 max-w-6xl max-h-fit bg-slate-50 dark:bg-gray-900">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>

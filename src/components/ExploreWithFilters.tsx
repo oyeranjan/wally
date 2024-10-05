@@ -101,7 +101,7 @@ export function ExploreWithFilters() {
     const onSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?q=${query}${imageFilter}`);
+        const response = await axios.get(`/search?q=${query}${imageFilter}`);
         setWallpapers(response.data.data); // No need to append, just set the data
         setlastPage(response.data.meta.last_page)
         settotalImage(response.data.meta.total)
@@ -119,7 +119,7 @@ export function ExploreWithFilters() {
         e.preventDefault();
         console.log("submitted filter query!!");
         try {
-          const response = await axios.get(`${API_URL}/wallpapers?q=${query}${imageFilter}`);
+          const response = await axios.get(`/search?q=${query}${imageFilter}`);
           setWallpapers(response.data.data); // No need to append, just set the data
           setlastPage(response.data.meta.last_page)
           settotalImage(response.data.meta.total)
@@ -141,7 +141,7 @@ export function ExploreWithFilters() {
     // Fetch the initial set of images (page 1, without the page parameter)
     const fetchInitialWallpapers = async () => {
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?q=abstract+tech&categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
+        const response = await axios.get(`/search?q=abstract+tech&categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1`);
         setWallpapers(response.data.data); // No need to append, just set the data
         setlastPage(response.data.meta.last_page)
         // console.log(response.data.data)
@@ -156,7 +156,7 @@ export function ExploreWithFilters() {
     const fetchWallpapers = async (pageNumber: number) => {
       setLoadingMore(true);
       try {
-        const response = await axios.get(`${API_URL}/wallpapers?q=${query}${imageFilter}&page=${pageNumber}`);
+        const response = await axios.get(`/search?q=${query}${imageFilter}&page=${pageNumber}`);
         setWallpapers((prevWallpapers) => [...prevWallpapers, ...response.data.data]); // Append new wallpapers
       } catch (error) {
         console.error('Error fetching wallpapers:', error);
@@ -213,30 +213,30 @@ export function ExploreWithFilters() {
     </div>
     <div className='grid md:flex items-center justify-center justify-items-start ps-2 gap-2 mt-4 mx-auto'>
         <ToggleGroup variant="outline" type="multiple" className='grid grid-cols-4 md:grid-cols-7'>
-            <ToggleGroupItem value="general"  aria-label="General" onClick={() => handleSelect('general')}>
+            <ToggleGroupItem value="general"  aria-label="General" className='hover:bg-slate-900' onClick={() => handleSelect('general')}>
                 <p>General</p>
             </ToggleGroupItem>
-            <ToggleGroupItem value="anime" aria-label="Anime" onClick={() => handleSelect('anime')}>
+            <ToggleGroupItem value="anime" aria-label="Anime" className='hover:bg-slate-900' onClick={() => handleSelect('anime')}>
                 <p>Anime</p>
             </ToggleGroupItem>
-            <ToggleGroupItem value="people" aria-label="People" onClick={() => handleSelect('people')}>
+            <ToggleGroupItem value="people" aria-label="People" className='hover:bg-slate-900'  onClick={() => handleSelect('people')}>
                 <p>People</p>
             </ToggleGroupItem>
-            <ToggleGroupItem value="aiart" aria-label="AI Art" onClick={() => handleSelect('aiart')}>
+            <ToggleGroupItem value="aiart" aria-label="AI Art" className='hover:bg-slate-900'  onClick={() => handleSelect('aiart')}>
                 <p>AI Art</p>
             </ToggleGroupItem>
-            <ToggleGroupItem value="sfw" aria-label="SFW" onClick={() => handleSelect('sfw')}>
+            <ToggleGroupItem value="sfw" aria-label="SFW" className='hover:bg-slate-900'  onClick={() => handleSelect('sfw')}>
                 <p>SFW</p>
             </ToggleGroupItem>
-            <ToggleGroupItem value="sketchy" aria-label="Sketchy" onClick={() => handleSelect('sketchy')}>
+            <ToggleGroupItem value="sketchy" aria-label="Sketchy" className='hover:bg-slate-900'  onClick={() => handleSelect('sketchy')}>
                 <p>Sketchy</p>
             </ToggleGroupItem>
-            <ToggleGroupItem disabled value="nsfw" aria-label="NSFW" onClick={() => handleSelect('nsfw')}>
+            <ToggleGroupItem disabled value="nsfw" aria-label="NSFW" className='hover:bg-slate-900'  onClick={() => handleSelect('nsfw')}>
                 <p>NSFW</p>
             </ToggleGroupItem>
         </ToggleGroup>
         <div className='grid grid-cols-3'>
-        <select className="select select-bordered w-[100px] md:w-[140px] self-center h-[40px] min-h-[40px] mr-5 ps-3" value={sortBy} onChange={handleSortByChange}>
+        <select className="select select-bordered w-[100px] md:w-[140px] self-center h-[40px] min-h-[40px] mr-5 ps-3 bg-slate-50 dark:bg-gray-900" value={sortBy} onChange={handleSortByChange}>
           <option defaultValue={''}>Sort by</option>
           <option value="relevance">Relevance</option>
           <option value="random">Random</option>
@@ -247,7 +247,7 @@ export function ExploreWithFilters() {
           <option value="hot">Hot</option>
         </select>
 
-        <select className="select select-bordered w-[100px] md:w-[140px] self-center h-[40px] min-h-[40px] mr-5 ps-3" value={order} onChange={handleOrderChange}>
+        <select className="select select-bordered w-[100px] md:w-[140px] self-center h-[40px] min-h-[40px] mr-5 ps-3 bg-slate-50 dark:bg-gray-900" value={order} onChange={handleOrderChange}>
           <option defaultValue={''}>Order</option>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
@@ -318,7 +318,7 @@ export function ExploreWithFilters() {
 
     {wallpapers.length > 0 ?
     <dialog id="my_modal_2" className="modal">
-      <div className="modal-box w-11/12 max-w-6xl max-h-fit">
+      <div className="modal-box w-11/12 max-w-6xl max-h-fit bg-slate-50 dark:bg-gray-900">
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
         </form>
