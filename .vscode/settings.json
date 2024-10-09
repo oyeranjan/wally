@@ -1,0 +1,36 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": false,
+    },
+    "editor.codeActionsOnSave": [
+        "source.fixAll",
+        "source.fixAll.eslint",
+        "source.addMissingImports",
+        "source.organizeImports"
+    ],
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features",
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "css.autoValidation": "Always",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+}

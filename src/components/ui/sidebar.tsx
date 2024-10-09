@@ -1,9 +1,9 @@
 "use client";
 import { cn } from "@/lib/utils";
-import Link, { LinkProps } from "next/link";
-import React, { useState, createContext, useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { IconCategory, IconHeartFilled, IconHome, IconMenu2, IconSearch, IconTrendingUp, IconX } from "@tabler/icons-react";
+import { AnimatePresence, motion } from "framer-motion";
+import Link, { LinkProps } from "next/link";
+import React, { createContext, useContext, useState } from "react";
 
 interface Links {
   label: string;
@@ -189,37 +189,37 @@ export const SidebarLink = ({
   );
 };
 
-export const Mobilesidebar= () =>{
-    return(
-        <section
-        className="block fixed md:hidden bottom-0 inset-x-0 z-50 shadow-lg text-gray-800 bg-gray-700 dark:bg-dark backdrop-blur-lg bg-opacity-30 dark:bg-opacity-60 dark:text-gray-200 border-t-2 border-royal/20">
-        <div id="tabs" className="flex justify-between">
-            <Link href="/"
-            className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
-            <IconHome className="h-6 w-6 inline-block mb-1"/>
-            <span className="tab block text-xs">Home</span>
-            </Link>
-            <Link href="/latest"
-            className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
-            <IconTrendingUp className="h-6 w-6 inline-block mb-1" />
-            <span className="tab block text-xs">Latest</span>
-            </Link>
-            <Link href="/explore"
-            className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
-            <IconSearch className="h-6 w-6 inline-block mb-1" />
-            <span className="tab block text-xs">Search</span>
-            </Link>
-            <Link href="/category"
-            className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
-            <IconCategory className="h-6 w-6 inline-block mb-1" />
-            <span className="tab block text-xs">Category</span>
-            </Link>
-            <Link href="/favorite"
-            className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
-            <IconHeartFilled className="h-6 w-6 inline-block mb-1" />
-            <span className="tab block text-xs">Favorite</span>
-            </Link>
-        </div>
-        </section>
-    );
+export const Mobilesidebar = () => {
+  return (
+    <section
+      className="block fixed md:hidden bottom-0 inset-x-0 z-50 shadow-lg text-gray-800 bg-gray-700 dark:bg-dark backdrop-blur-lg bg-opacity-30 dark:bg-opacity-60 dark:text-gray-200 border-t-2 border-royal/20">
+      <div id="tabs" className="flex justify-between">
+        <Link href="/"
+          className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
+          <IconHome className="h-6 w-6 inline-block mb-1" />
+          <span className="tab block text-xs">Home</span>
+        </Link>
+        <Link href="/latest"
+          className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
+          <IconTrendingUp className="h-6 w-6 inline-block mb-1" />
+          <span className="tab block text-xs">Latest</span>
+        </Link>
+        <Link href="/explore"
+          className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
+          <IconSearch className="h-6 w-6 inline-block mb-1" />
+          <span className="tab block text-xs">Search</span>
+        </Link>
+        <Link href="/category"
+          className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
+          <IconCategory className="h-6 w-6 inline-block mb-1" />
+          <span className="tab block text-xs">Category</span>
+        </Link>
+        <Link href="/favorite"
+          className="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-0 hover:bg-gray-900">
+          <IconHeartFilled className="h-6 w-6 inline-block mb-1" />
+          <span className="tab block text-xs">Favorite</span>
+        </Link>
+      </div>
+    </section>
+  );
 };

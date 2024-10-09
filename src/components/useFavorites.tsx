@@ -5,8 +5,8 @@ interface Wallpaper {
   id: string;
   url: string;
   path: string;
-  dimension_x : number;
-  dimension_y : number;
+  dimension_x: number;
+  dimension_y: number;
   views: number;
   thumbs: {
     large: string;
@@ -34,7 +34,7 @@ const useFavorites = () => {
     let updatedFavorites = [...favorites];
 
     const isFavorite = favorites.some((fav) => fav.id === wallpaper.id);
-    
+
     if (isFavorite) {
       updatedFavorites = updatedFavorites.filter((fav) => fav.id !== wallpaper.id);
       console.log(`Wallpaper with id ${wallpaper.id} removed from favorites`);

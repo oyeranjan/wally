@@ -9,7 +9,7 @@ export default function Explore() {
   return (
     <>
       <HeroHighlight>
-      <div
+        <div
           className={cn(
             "rounded-md flex flex-col md:flex-row w-[100vw] flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-x-hidden",
             "h-screen"

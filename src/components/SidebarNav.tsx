@@ -1,22 +1,19 @@
 "use client";
-import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
+import Logo_dark from "@/data/images/logo_dark.webp";
 import {
-  IconSearch,
-  IconTrendingUp,
-  IconDiamond,
   IconArrowsShuffle,
   IconCategory2,
-  IconTags,
+  IconDiamond,
   IconFlame,
   IconHeartFilled,
-  IconUserSquare
+  IconSearch,
+  IconTrendingUp
 } from "@tabler/icons-react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Logo_light from "@/data/images/logo_light.webp"
-import Logo_dark from "@/data/images/logo_dark.webp"
+import Link from "next/link";
+import { useState } from "react";
+import { Sidebar, SidebarBody, SidebarLink } from "./ui/sidebar";
 
 
 export function SidebarNav() {
@@ -43,11 +40,11 @@ export function SidebarNav() {
       ),
     },
     {
-        label: "Hot",
-        href: '/hot',
-        icon: (
-            <IconFlame className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-        )
+      label: "Hot",
+      href: '/hot',
+      icon: (
+        <IconFlame className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+      )
     },
     {
       label: "Random",
@@ -134,15 +131,15 @@ export const DummyDashboard = () => {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 justify-items-center text-center mt-[2rem]">
-      {[...new Array(12)].map((_, index) => (
-        <div
-          key={"first-array" + index}
-          className="shadow rounded-md p-4 max-w-sm w-full max-full mx-auto">
-          <div className="animate-pulse space-x-4">
-            <div className="h-40 bg-slate-700 rounded space-y-6 py-1"></div>
+        {[...new Array(12)].map((_, index) => (
+          <div
+            key={"first-array" + index}
+            className="shadow rounded-md p-4 max-w-sm w-full max-full mx-auto">
+            <div className="animate-pulse space-x-4">
+              <div className="h-40 bg-slate-700 rounded space-y-6 py-1"></div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
     </div>
   );

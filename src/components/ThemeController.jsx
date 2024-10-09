@@ -1,6 +1,5 @@
 "use client"
-import * as React from "react"
-import { IconMoonStars, IconSunFilled } from "@tabler/icons-react"
+import { IconSunFilled } from "@tabler/icons-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
@@ -17,7 +16,7 @@ export function ThemeController() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="hidden absolute right-10 top-4 z-50" style={{width:"40px", height:"40px"}}>
+        <Button variant="outline" size="icon" className="hidden absolute right-10 top-4 z-50" style={{ width: "40px", height: "40px" }}>
           <IconSunFilled className="h-5 w-5 p-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           {/* <IconMoonStars className="absolute h-5 w-5 p-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" /> */}
           {/* <span className="sr-only">Toggle theme</span> */}

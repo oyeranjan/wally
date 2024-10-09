@@ -63,6 +63,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -74,20 +75,31 @@
   animation-fill-mode: both;
   transition: all .15s ease 0s
 }
+
 @keyframes tada-keyframes {
   0% {
     transform: scaleX(1);
   }
-  10%, 5% {
-      transform: scale3d(.9, .9, .9) rotate(-5deg);
+
+  10%,
+  5% {
+    transform: scale3d(.9, .9, .9) rotate(-5deg);
   }
-  15%, 25%, 35%, 45% {
-      transform: scale3d(1.1, 1.1, 1.1) rotate(5deg);
+
+  15%,
+  25%,
+  35%,
+  45% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(5deg);
   }
-  20%, 30%, 40% {
-      transform: scale3d(1.1, 1.1, 1.1) rotate(-5deg);
+
+  20%,
+  30%,
+  40% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate(-5deg);
   }
+
   50% {
-      transform: scaleX(1);
+    transform: scaleX(1);
   }
 }

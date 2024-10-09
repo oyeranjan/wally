@@ -5,7 +5,7 @@ interface Props {
   showSearchbox: boolean;
 }
 
-export function SearchBox({showSearchbox}:Props) {
+export function SearchBox({ showSearchbox }: Props) {
   const placeholders = [
     "Search photos and illustration",
     "Mountains", "Nature", "Sky", "Clouds", "Anime", "Art & Design", "Futuristic", "Cars & bikes"
@@ -21,14 +21,14 @@ export function SearchBox({showSearchbox}:Props) {
   };
   return (
     <>
-    <div className={showSearchbox ? "pt-[2rem] flex flex-col justify-center  items-center px-4" : 'hidden'}>
-      <PlaceholdersAndVanishInput
-        placeholders={placeholders}
-        onChange={handleChange}
-        onSubmit={onSubmit}
-      />
-      
-    </div>
+      <div className={showSearchbox ? "pt-[2rem] flex flex-col justify-center  items-center px-4" : 'hidden'}>
+        <PlaceholdersAndVanishInput
+          placeholders={placeholders}
+          onChange={handleChange}
+          onSubmit={onSubmit}
+        />
+
+      </div>
     </>
   );
 }
