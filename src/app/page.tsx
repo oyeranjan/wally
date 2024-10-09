@@ -1,3 +1,4 @@
+"use client"
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { ParallaxScrollGallery } from "@/components/ParallaxScrollGallery";
@@ -6,7 +7,6 @@ import { HeroHighlight } from "@/components/ui/hero-highlight";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  
   return (
     <>
       <HeroHighlight>
@@ -17,7 +17,7 @@ export default function Home() {
           )}
         >
           <SidebarNav />
-          <div className="w-full">
+          <div className="w-full h-[101vh]">
             <HeroSection text1="Unleash the Art of Your Screen: Dive into a" text2="World of Stunning Wallpapers" />
             <ParallaxScrollGallery />
             <Footer />
@@ -28,3 +28,4 @@ export default function Home() {
     </>
   );
 }
+

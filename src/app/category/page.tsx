@@ -8,6 +8,7 @@ import { IconCategory2 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Footer } from "@/components/Footer";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const Anime = [
     { id : 1, text : "Characters", value : "anime character" },
@@ -90,9 +91,9 @@ const categoryMap : { [key : string] : {id: number, text: string, value: string}
 
 export default function Category() {
 
-    const [selectedCategory, setSelectedCategory] = useState<string>('');
+    const [selectedCategory, setSelectedCategory] = useState<string>("");
     const [subcategories, setSubcategories] = useState<{ id: number, text: string, value: string }[]>([]);
-    const [subCategoryValue, setsubCategoryValue] = useState<string>('');
+    const [subCategoryValue, setsubCategoryValue] = useState<string>("");
     const [catValueQuery, setcatValueQuery] = useState<string>('')
 
     
@@ -131,8 +132,8 @@ export default function Category() {
                         <p className="text-xl md:text-2xl">Explore Category</p>
                     </div>
                     <div className="flex gap-2 md:gap-10 mx-1 md:mx-10 my-3 text-slate-100">
-                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={selectedCategory} onChange={handleCategoryChange} >
-                            <option defaultValue={''}>Select Category</option>
+                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={selectedCategory} onChange={handleCategoryChange} required>
+                            <option value="" disabled>Select Category</option>
                             <option value="anime">Anime & Manga</option>
                             <option value="art">Art & Design</option>
                             <option value="entertainment">Entertainment</option>
@@ -143,14 +144,25 @@ export default function Category() {
                             <option value="people">People</option>
                             <option value="vehicles">Vehicles</option>
                         </select>
-                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={subCategoryValue} onChange={handleSubCategoryChange}>
-                            <option defaultValue={''}>Sub Category</option>
+                        <select className="select select-bordered w-[150px] md:w-[200px] bg-slate-800 dark:bg-gray-700" value={subCategoryValue} onChange={handleSubCategoryChange} required>
+                            <option value="" disabled>Sub Category</option>
                             {subcategories.map((subcategory) => 
                             <option key={subcategory.id} value={subcategory.value}>{subcategory.text}</option>
                             )}
                         </select>
+                        <TooltipProvider>
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <Button variant="outline" className="h-auto bg-slate-800 dark:bg-gray-700" onClick={handleCategoriesSubmit}>Submit</Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    { selectedCategory === "" && subCategoryValue === "" && <p className="text-red-500">Select category & subcategory</p> }
+                                    { selectedCategory !== "" && subCategoryValue === "" && <p className="text-red-500">Select subcategory</p> }
+                                    { selectedCategory !== "" && subCategoryValue !== "" && <p>Submit</p> }
+                                </TooltipContent>
+                            </Tooltip>
+                        </TooltipProvider>
                         
-                        <Button variant="outline" className="h-auto bg-slate-800 dark:bg-gray-700" onClick={handleCategoriesSubmit}>Submit</Button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Image from "next/image";
 import Link from 'next/link';
@@ -41,6 +41,7 @@ export function ParallaxScrollGallery() {
     const [queryText, setqueryText] = useState<string>('');
     const [imgID, setimgID] = useState<number>(0);
     const [imgfScreen, setimgfScreen] = useState<boolean>(false)
+    const observerRef = useRef<HTMLDivElement | null>(null);
 
     const { favorites, toggleFavorite } = useFavorites();
 
@@ -116,10 +117,31 @@ export function ParallaxScrollGallery() {
       fetchInitialWallpapers(); // Fetch the first page on component mount
     }, []);
     
-    const handleLoadMore = () => {
-      fetchWallpapers(page); // Fetch the next page
-      setPage(page + 1); // Increment page number
-    };
+    useEffect(() => {
+      fetchWallpapers(page-1); // Fetch the next page
+    }, [page]);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting && !loading) {
+            setPage((page) => page + 1); // Increment page number
+          }
+        },
+        {
+          root: null, // Default is viewport
+          rootMargin: "0px",
+          threshold: 1.0, // Trigger when 100% is in view
+        }
+      );
+  
+      if (observerRef.current) observer.observe(observerRef.current);
+  
+      return () => {
+        if (observerRef.current) observer.unobserve(observerRef.current);
+      };
+    }, [loading]);
 
     const openModal = (index: number) => {
       const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
@@ -153,8 +175,6 @@ export function ParallaxScrollGallery() {
         console.error('Download failed:', error.message);
       }
     }
-    
-  if (loading) return <DummyDashboard />;
 
   return(
     <div className='min-h-[90vh]'>
@@ -166,8 +186,9 @@ export function ParallaxScrollGallery() {
       />
     </div>
     {queryText.length > 2 ? <div className='grid item-starts max-w-6xl mx-auto px-10 pt-10'>
-      <p className='text-sm md:text-[16px] lg:text-[20px]'>Your search for <span className='font-bold'>`{queryText}`</span> revealed <span className='font-bold'>`{totalImage}`</span> captivating wallpapers.</p>
+      <p className='text-sm md:text-[16px] lg:text-[20px]'>Your search for <span className='font-bold'>`{queryText}`</span> revealed <span className='font-bold'>`{totalImage}`</span> captivating wallpapers. Try <Link href={'/explore'} className="link link-hover text-blue-500">search</Link> with filters.</p>
     </div> : ''}
+    {loading ? <DummyDashboard /> : 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start  max-w-6xl mx-auto gap-5 p-10">
         {
             wallpapers.map((wallpaper, index) => (
@@ -204,16 +225,17 @@ export function ParallaxScrollGallery() {
             ))
         }
     </div>
+    }
     {   (page-1) >= lastPage ? <p className='text-center'> End of the page. </p> :
         <div className='text-center mb-4'>
             <button
-                onClick={handleLoadMore} disabled={loadingMore}
+                disabled={loadingMore}
                 className="px-4 py-2 text-slate-200 dark:text-white border-neutral-200 dark:border-slate-800 bg-slate-900/[0.8] hover:bg-slate-700 border rounded-lg border-slate-800 backdrop-blur-xl">
                 {loadingMore ? 'Loading...' : 'Load more'}
             </button>
         </div>
     }
-
+    
     {/* ---------------------------------Image modal code starts--------------------------------- */}
     {wallpapers.length > 0 ?
     <dialog id="my_modal_2" className="modal">
@@ -260,7 +282,7 @@ export function ParallaxScrollGallery() {
       </form>
     </dialog> : '' }
     {/* ---------------------------------Image modal code ends--------------------------------- */}
-
+    <div ref={observerRef}>{" "}</div>
     </div>
   );
 }

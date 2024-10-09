@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import Image from "next/image";
 import Link from 'next/link';
@@ -54,6 +54,7 @@ export function ExploreWithFilters() {
     const [imageFilter, setimageFilter] = useState<string>('&categories=111&purity=110&sorting=relevance&order=desc&ai_art_filter=1');
     const [imgfScreen, setimgfScreen] = useState<boolean>(false)
     const [imgID, setimgID] = useState<number>(0);
+    const observerRef = useRef<HTMLDivElement | null>(null);
 
     // State to hold selected values for both selects
     const [sortBy, setSortBy] = useState<string>('');
@@ -167,12 +168,37 @@ export function ExploreWithFilters() {
     useEffect(() => {
       fetchInitialWallpapers(); // Fetch the first page on component mount
     }, []);
+
+    useEffect(() => {
+      fetchWallpapers(page-1); // Fetch the next page
+    }, [page]);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting && !loading) {
+            setPage((page) => page + 1); // Increment page number
+          }
+        },
+        {
+          root: null, // Default is viewport
+          rootMargin: "0px",
+          threshold: 1.0, // Trigger when 100% is in view
+        }
+      );
   
-    const handleLoadMore = () => {
-      fetchWallpapers(page); // Fetch the next page
-      setPage(page + 1); // Increment page number
-      console.log(page, lastPage)
-    };
+      if (observerRef.current) observer.observe(observerRef.current);
+  
+      return () => {
+        if (observerRef.current) observer.unobserve(observerRef.current);
+      };
+    }, [loading]);
+  
+    // const handleLoadMore = () => {
+    //   fetchWallpapers(page); // Fetch the next page
+    //   setPage(page + 1); // Increment page number
+    // };
 
     const openModal = (index: number) => {
       const modal = document.getElementById('my_modal_2') as HTMLDialogElement;
@@ -261,7 +287,7 @@ export function ExploreWithFilters() {
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                    <p>Refresh</p>
+                    <p>Reload</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
@@ -308,7 +334,7 @@ export function ExploreWithFilters() {
     {   (page-1) >= lastPage ? <p className='text-center pb-5'> End of the page. </p> :
         <div className='text-center mb-4'>
             <button
-                onClick={handleLoadMore} disabled={loadingMore}
+                disabled={loadingMore}
                 className="px-4 py-2 text-slate-200 dark:text-white border-neutral-200 dark:border-slate-800 bg-slate-900/[0.8] hover:bg-slate-700 border rounded-lg border-slate-800 backdrop-blur-xl">
                 {loadingMore ? 'Loading...' : 'Load more'}
             </button>
@@ -361,6 +387,7 @@ export function ExploreWithFilters() {
       </form>
     </dialog> : '' }
     {/* ---------------------------------Image modal code ends--------------------------------- */}
+    <div ref={observerRef}>{" "}</div>
     </div>
   );
 }

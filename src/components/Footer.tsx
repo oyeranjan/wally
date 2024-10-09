@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Logo_dark from "@/data/images/logo_dark.webp"
 import Image from "next/image";
 import Link from "next/link";
@@ -7,8 +6,10 @@ import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconBrandX, Ico
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useTheme } from "next-themes"
 
-export function Footer(){
+  
+export const Footer: React.FC = () => {
     const { setTheme } = useTheme()
+
     return(
         <>
         <footer className="footer bg-slate-100 dark:bg-base-300 text-slate-800 dark:text-base-content p-5 md:p-10">
